@@ -52,7 +52,7 @@ class FibonacciDialog extends JInternalFrame {
             lbl2.setText("1");
          }
          else{
-            int val = input - 1 +input+2;
+            int val = (input - 1) +(input+2);
             lbl.setText("Fibonacci: " +val);
          }
       }

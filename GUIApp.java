@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.JTree;
+import javax.swing.JOptionPane;
 
 //swing event
 import javax.swing.event.TreeSelectionEvent;
@@ -69,11 +70,13 @@ public class GUIApp {
    private JMenuItem exitItem;
    private JMenuItem aboutItem;
    private JTree tree;
+   private JOptionPane pane;
    
    //constructor
    public GUIApp() {
       initComponents();
       statusLabel.setText("Initialization Complete.");
+      JOptionPane pane = new JOptionPane();
    }
    
    //create GUI and make it visible to user
@@ -157,14 +160,14 @@ public class GUIApp {
       );
    }
    
-   private void exitActionPerformed() {
-      System.exit(0);
+   public void exitActionPerformed(){
+      frame.dispose();
    }
    
-   private void aboutActionPerformed() {
-      System.out.println("Enter pressed");
+   public void aboutActionPerformed(){
+      pane = new JOptionPane();
+      pane.showMessageDialog(null, "thanks for using app!");
    }
-   
    //buildPanel
    private void buildPanel() {
       panel = new JPanel();

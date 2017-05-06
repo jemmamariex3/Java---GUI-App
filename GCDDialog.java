@@ -44,6 +44,12 @@ class GCDDialog extends JInternalFrame {
       }
       return instance;
    }
+   public int GCD(int val1, int val2){
+      if(val2 == 0){
+         return val1;
+      }
+      return GCD(val2, (val1%val2));
+   }
    private void gcdActionPerformed() {
       
       int input1 = 0;
@@ -51,21 +57,12 @@ class GCDDialog extends JInternalFrame {
       try {
          input1 = Integer.parseInt(tf.getText());
          input2 = Integer.parseInt(tf2.getText());
-         
-         
-         if(input2 == 0){
-            lbl.setText("Undefined");
-         }
-         else{
-            double val = input1%input2;
-            int result = (int) val;
-            lbl.setText("GCD: " +result);
-         }
-         
+         lbl.setText("Answer: " +GCD(input1,input2));
       }
       catch(Exception e) {
          JOptionPane.showMessageDialog(this, "Bad input! Try again.");
       }
+      
       
    }
    // private constructor

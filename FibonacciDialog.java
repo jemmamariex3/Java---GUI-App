@@ -42,19 +42,17 @@ class FibonacciDialog extends JInternalFrame {
       }
       return instance;
    }
-   private void fibActionPerformed() {
-      
+   public int fibonacci(int val){
+      if(val <= 1){
+         return 1;
+      }
+      return fibonacci(val-1) + fibonacci(val-2);
+   }
+   private void fibActionPerformed(){
       int input = 0;
-      lbl2.setText("");
-      try {
+      try{
          input = Integer.parseInt(tf.getText());
-         if(input <=1) {
-            lbl2.setText("1");
-         }
-         else{
-            int val = (input - 1) +(input+2);
-            lbl.setText("Fibonacci: " +val);
-         }
+         lbl.setText("Answer: " +fibonacci(input));
       }
       catch(Exception e) {
          JOptionPane.showMessageDialog(this, "Bad input! Try again.");
@@ -72,7 +70,7 @@ class FibonacciDialog extends JInternalFrame {
       tf = new JTextField(10);
       btn = new JButton("Fibonacci?");
       lbl = new JLabel("Enter Integer");
-      lbl2 = new JLabel();
+      lbl2 = new JLabel(" ");
       upperPanel = new JPanel();
       lowerPanel = new JPanel();
       

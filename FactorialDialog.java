@@ -33,7 +33,7 @@ class FactorialDialog extends JInternalFrame {
    
    private JTextField tf;
    private JButton btn;
-   private JLabel lbl, lbl2;
+   private JLabel lbl;
    private JPanel upperPanel, lowerPanel;
    
    public static FactorialDialog getInstance() {
@@ -42,25 +42,21 @@ class FactorialDialog extends JInternalFrame {
       }
       return instance;
    }
-   private void factActionPerformed() {
-      
-      int input = 0;
-      lbl2.setText("");
-      try {
-         input = Integer.parseInt(tf.getText());
-         if(input <=1) {
-            lbl2.setText("1");
-         }
-         else{
-            double val = input * factActionPerformed();
-            int result = (int) val;
-            lbl.setText("Factorial: " +result);
-         }
+   public int factorial(int val){
+      if(val <= 1){
+         return 1;
       }
-      catch(Exception e) {
+      return val * factorial(val-1);
+   }
+   private void factActionPerformed(){
+      int input = 0;
+      try{
+         input = Integer.parseInt(tf.getText());
+         lbl.setText("Answer: " +factorial(input));
+      }
+      catch(Exception e){
          JOptionPane.showMessageDialog(this, "Bad input! Try again.");
       }
-      
    }
    // private constructor
    private FactorialDialog() {
@@ -73,7 +69,6 @@ class FactorialDialog extends JInternalFrame {
       tf = new JTextField(10);
       btn = new JButton("Factorial?");
       lbl = new JLabel("Enter Integer");
-      lbl2 = new JLabel();
       upperPanel = new JPanel();
       lowerPanel = new JPanel();
       
@@ -84,7 +79,6 @@ class FactorialDialog extends JInternalFrame {
       upperPanel.add(btn);
       
       lowerPanel.add(lbl);
-      lowerPanel.add(lbl2);
       
       add(upperPanel, BorderLayout.NORTH);
       add(lowerPanel, BorderLayout.SOUTH);
